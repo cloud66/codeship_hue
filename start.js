@@ -7,6 +7,8 @@ http.createServer(function (req, res) {
     load += chunk;
   });
   req.on('end', function () {
+    console.log("Received")
+    console.log(load)
     data = JSON.parse(load);
     if (data['status'] == 'testing') {
       color = 'blue'
@@ -23,7 +25,8 @@ http.createServer(function (req, res) {
         { json: { "value1" : color }},
         function (error, response, body) {
             if (!error && response.statusCode == 200) {
-                console.log(body)
+              console.log("Posted" + color)
+              console.log(body)
             } else {
               console.log(error)
             }
